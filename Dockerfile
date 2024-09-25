@@ -17,22 +17,25 @@ COPY Gemfile ./
 # Install bundler and run bundle install
 RUN gem install bundler && bundle install --jobs=4 --retry=3
 
-# Clone Asciinema Server source code
-RUN git clone https://github.com/asciinema/asciinema-server.git . 
+# Clone Asciinema Server source code into a subdirectory
+RUN git clone https://github.com/asciinema/asciinema-server.git /app/asciinema-server
+
+# Change working directory to the cloned repository
+WORKDIR /app/asciinema-server
 
 # Expose the default port
 EXPOSE 4000
 
-# Create storage directory for .cast files
-RUN mkdir -p /app/storage && mkdir -p /app/db
+# Create storage directories for .cast files and database
+RUN mkdir -p /app/asciinema-server/storage && mkdir -p /app/asciinema-server/db
 
 # Set environment variables
 ENV RACK_ENV=production
-ENV DATABASE_URL=sqlite3:///app/db/asciinema.sqlite3
+ENV DATABASE_URL=sqlite3:///app/asciinema-server/db/asciinema.sqlite3
 
 # Copy start script
-COPY start.sh /app/start.sh
-RUN chmod +x /app/start.sh
+COPY start.sh /app/asciinema-server/start.sh
+RUN chmod +x /app/asciinema-server/start.sh
 
 # Start the server
 CMD ["./start.sh"]
