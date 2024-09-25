@@ -1,3 +1,3 @@
 # config/config.ru
-require_relative './app' # Adjust the path if your main application file is in a different location
+require_relative './app' # app.rb
 run Sinatra::Application

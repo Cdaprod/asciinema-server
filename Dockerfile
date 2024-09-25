@@ -11,12 +11,12 @@ RUN apt-get update && apt-get install -y \
 # Set working directory
 WORKDIR /app
 
-# Copy files to the container
-COPY Gemfile ./
-COPY app.rb ./
-COPY config.ru ./
-COPY puma.rb ./
-COPY start.sh ./
+# Copy necessary files to the container
+COPY Gemfile /app
+COPY app.rb /app
+COPY config.ru /app
+COPY puma.rb /app
+COPY start.sh /app
 
 # Install bundler and run bundle install
 RUN gem install bundler && bundle install --jobs=4 --retry=3
@@ -37,9 +37,8 @@ RUN mkdir -p /app/asciinema-server/storage && mkdir -p /app/asciinema-server/db
 ENV RACK_ENV=production
 ENV DATABASE_URL=sqlite3:///app/asciinema-server/db/asciinema.sqlite3
 
-# Copy start script
-COPY start.sh /app/asciinema-server/start.sh
-RUN chmod +x /app/asciinema-server/start.sh
+# Make the start script executable
+RUN chmod +x /app/start.sh
 
 # Start the server
 CMD ["./start.sh"]
