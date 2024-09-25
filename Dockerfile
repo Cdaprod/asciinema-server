@@ -37,4 +37,4 @@ ENV DATABASE_URL=sqlite3:///app/asciinema-server/db/asciinema.sqlite3
 RUN chmod +x /app/start.sh
 
 # Start the server
-CMD ["./start.sh"]
+CMD ["/app/start.sh"]
