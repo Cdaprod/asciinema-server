@@ -3,6 +3,7 @@ services:
     build: .
     ports:
       - "4000:4000"
+    restart: always 
     environment:
       - RACK_ENV=production
       - DATABASE_URL=sqlite3:///app/db/asciinema.sqlite3
