@@ -12,11 +12,7 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /app
 
 # Copy necessary files to the container
-COPY Gemfile /app
-COPY app.rb /app
-COPY config.ru /app
-COPY puma.rb /app
-COPY start.sh /app
+COPY . /app
 
 # Install bundler and run bundle install
 RUN gem install bundler && bundle install --jobs=4 --retry=3
