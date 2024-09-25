@@ -11,11 +11,14 @@ RUN apt-get update && apt-get install -y \
 # Set working directory
 WORKDIR /app
 
-# Clone Asciinema Server
-RUN git clone https://github.com/asciinema/asciinema-server.git . 
+# Copy Gemfile to the container
+COPY Gemfile ./
 
-# Install bundler and gems
-RUN gem install bundler && bundle install
+# Install bundler and run bundle install
+RUN gem install bundler && bundle install --jobs=4 --retry=3
+
+# Clone Asciinema Server source code
+RUN git clone https://github.com/asciinema/asciinema-server.git . 
 
 # Expose the default port
 EXPOSE 4000
