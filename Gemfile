@@ -3,8 +3,9 @@ source 'https://rubygems.org'
 # Web framework and related gems
 gem 'sinatra', '~> 3.0'
 gem 'puma', '~> 6.0'
-gem 'rack', '~> 3.0'
+gem 'rack', '~> 2.2'
 gem 'rake', '~> 13.0'
+gem 'rackup'
 
 # SQLite database support
 gem 'sqlite3', '~> 1.5'
