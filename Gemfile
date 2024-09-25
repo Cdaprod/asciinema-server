@@ -25,7 +25,7 @@ gem 'sprockets', '~> 4.0'
 
 # File uploads and session management
 gem 'carrierwave', '~> 2.0'
-gem 'rack-session-cookie', '~> 1.0'
+gem 'rack-session', '~> 2.0'
 
 # Debugging and logging
 gem 'logger', '~> 1.4'
