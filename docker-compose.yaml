@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  asciinema-server:
+    build: .
+    ports:
+      - "4000:4000"
+    environment:
+      - RACK_ENV=production
+      - DATABASE_URL=sqlite3:///app/db/asciinema.sqlite3
+      - REDIS_URL=redis://localhost:6379/0
+      - HOSTNAME=localhost
+      - SECRET_KEY_BASE=
+    volumes:
+      - ./db:/app/db
+      - ~/Casts:/app/storage
