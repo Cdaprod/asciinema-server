@@ -23,6 +23,9 @@ RUN git clone https://github.com/asciinema/asciinema-server.git /app/asciinema-s
 # Change working directory to the cloned repository
 WORKDIR /app/asciinema-server
 
+# Copy the puma configuration file to the appropriate directory
+COPY config/puma.rb config/puma.rb
+
 # Expose the default port
 EXPOSE 4000
 
