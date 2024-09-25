@@ -11,8 +11,12 @@ RUN apt-get update && apt-get install -y \
 # Set working directory
 WORKDIR /app
 
-# Copy Gemfile to the container
+# Copy files to the container
 COPY Gemfile ./
+COPY app.rb ./
+COPY config.ru ./
+COPY puma.rb ./
+COPY start.sh ./
 
 # Install bundler and run bundle install
 RUN gem install bundler && bundle install --jobs=4 --retry=3
@@ -22,9 +26,6 @@ RUN git clone https://github.com/asciinema/asciinema-server.git /app/asciinema-s
 
 # Change working directory to the cloned repository
 WORKDIR /app/asciinema-server
-
-# Copy the puma configuration file to the appropriate directory
-COPY config/puma.rb config/puma.rb
 
 # Expose the default port
 EXPOSE 4000
