@@ -11,5 +11,6 @@ services:
       - HOSTNAME=localhost
       - SECRET_KEY_BASE=secret
     volumes:
+      - .:/app
       - ./db:/app/db
-      - ~/Casts:/app/storage
+      - ~/casts:/app/storage
